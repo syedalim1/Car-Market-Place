@@ -17,12 +17,13 @@ function Home() {
     // Header
     <div>
       <Header />
-   
-      <Hero/>
-      <Category/>
-      <MostSearchedCar/>
-      <InfoSection/>
-      <Footer/>
+
+      <Hero />
+      <Category />
+      <MostSearchedCar />
+      <InfoSection />
+      <Footer />
+      <SignedIn />
     </div>
     // Hero
   );

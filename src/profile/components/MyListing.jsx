@@ -8,6 +8,17 @@ import { useUser } from "@clerk/clerk-react";
 import { FaTrashArrowUp } from "react-icons/fa6";
 import Service from "@/Shared/Service"; // For default export
 import CarItem from "@/CarItem";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 function MyListing() {
   const { user } = useUser();
@@ -57,18 +68,42 @@ function MyListing() {
 
               {/* Action Buttons */}
               <div className="p-2 bg-gray-50 rounded-lg flex justify-around gap-3 w-full">
-
-                <Link to={"/add-listing?mode=edit&id=" + item.id} className="w-full">
+                <Link
+                  to={"/add-listing?mode=edit&id=" + item.id}
+                  className="w-full"
+                >
                   <Button className="w-full" variant="outline">
                     Edit
                   </Button>
                 </Link>
-                <Button
-                  variant="destructive"
-                  className="bg-red-500 text-white rounded"
-                >
-                  <FaTrashArrowUp />
-                </Button>
+
+                <AlertDialog className="bg-white">
+                  <AlertDialogTrigger>
+                    <Button
+                      variant="destructive"
+                      className="bg-red-500 text-white rounded"
+                    >
+                      <FaTrashArrowUp />
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent className="bg-white">
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>
+                        Are you Defanaltly Delete
+                      </AlertDialogTitle>
+                      <AlertDialogDescription>
+                        This action cannot be undone. This will permanently
+                        delete your account and remove your data from our
+                        servers.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+
+                      <AlertDialogAction >Delete</AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
               </div>
             </div>
           ))

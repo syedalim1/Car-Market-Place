@@ -73,8 +73,27 @@ function AddListing() {
     }));
   };
 
+  const validateForm = () => {
+    // Get all required fields from carDetails
+    const requiredFields = carDetails.carDetails.filter(
+      (item) => item.required
+    );
+
+    // Check if all required fields have values
+    const isValid = requiredFields.every((field) => formData[field.name]);
+
+    if (!isValid) {
+      toast({ title: "Please fill in all required fields." });
+      return false;
+    }
+
+    return true;
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) return;
+
     setLoading(true);
     toast({ title: "Please Wait ......." });
 
@@ -189,14 +208,19 @@ function AddListing() {
             <UploadImages
               ref={imageUploaderRef}
               triggerUpload={triggerUpload}
+              carInfo={carInfo}
+              mode={mode}
             />
             <Button
               type="submit"
-              className="mt-10 bg-green-500 text-white py-2 px-4 rounded"
+              className="mt-10 bg-green-500 text-white py-2 px-4 rounded flex items-center justify-center gap-2"
               disabled={loading}
             >
               {loading ? (
-                <AiOutlineLoading className="animate-spin mr-2" />
+                <>
+                  <AiOutlineLoading className="animate-spin" />
+                  Uploading...
+                </>
               ) : (
                 "Submit"
               )}

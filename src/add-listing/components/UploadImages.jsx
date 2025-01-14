@@ -7,11 +7,14 @@ import React, {
 import { Cloudinary } from "@cloudinary/url-gen";
 import { db } from "../../../configs"; // Firestore config
 import { CarImages } from "../../../configs/schema";
+import { useSearchParams } from "react-router-dom";
+import { eq } from "drizzle-orm";
 
-const UploadImages = forwardRef(({ triggerUpload }, ref) => {
+const UploadImages = forwardRef(({ triggerUpload, carInfo, mode }, ref) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [uploadProgress, setUploadProgress] = useState({});
   const cld = new Cloudinary({ cloud: { cloudName: "duutgarew" } });
+  const [EditUploadImage, setEditUploadImage] = useState();
 
   const [id, setId] = useState();
 
@@ -20,6 +23,12 @@ const UploadImages = forwardRef(({ triggerUpload }, ref) => {
     const files = Array.from(event.target.files);
     setSelectedFiles((prevFiles) => [...prevFiles, ...files]);
   };
+  useEffect(() => {
+    if (mode === "edit" && carInfo?.images?.length > 0) {
+      setEditUploadImage(carInfo.images);
+      console.log("Images loaded for edit:", carInfo.images);
+    }
+  }, [mode, carInfo]);
 
   useEffect(() => {
     if (triggerUpload) {
@@ -104,9 +113,33 @@ const UploadImages = forwardRef(({ triggerUpload }, ref) => {
   useImperativeHandle(ref, () => ({
     uploadFiles,
   }));
+  const removeFile = async (index, isExistingImage) => {
+    try {
+      if (isExistingImage) {
+        // Get the image to be removed
+        const imageToRemove = EditUploadImage[index];
 
-  const removeFile = (index) => {
-    setSelectedFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+        if (!imageToRemove) {
+          console.error("Image not found for the given index.");
+          return;
+        }
+
+        // Delete the image from the database
+        await db.delete(CarImages).where(eq(CarImages.imageUrl, imageToRemove));
+
+        // Update the state to remove the image from the list
+        setEditUploadImage((prevImages) =>
+          prevImages.filter((_, i) => i !== index)
+        );
+      } else {
+        // For newly selected files, update the state to remove the file
+        setSelectedFiles((prevFiles) =>
+          prevFiles.filter((_, i) => i !== index)
+        );
+      }
+    } catch (error) {
+      console.error("Error removing file:", error);
+    }
   };
 
   return (
@@ -115,15 +148,40 @@ const UploadImages = forwardRef(({ triggerUpload }, ref) => {
         Upload Car Images
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        {/* Display existing images in "edit" mode */}
+        {mode === "edit" &&
+          EditUploadImage?.map((image, index) => (
+            <div
+              key={`edit-${index}`}
+              className="relative group border rounded-xl"
+            >
+              <img
+                src={image}
+                alt={`Uploaded ${index}`}
+                className="h-32 w-full object-cover"
+              />
+              <button
+                onClick={() => removeFile(index, true)} // Pass true to indicate it's an existing image
+                className="absolute top-1 right-1 bg-red-600 text-white text-xs px-2 py-1 rounded-full"
+              >
+                ✕
+              </button>
+            </div>
+          ))}
+
+        {/* Display newly selected files */}
         {selectedFiles.map((file, index) => (
-          <div key={index} className="relative group border rounded-xl">
+          <div
+            key={`new-${index}`}
+            className="relative group border rounded-xl"
+          >
             <img
               src={URL.createObjectURL(file)}
               alt={`Preview ${index}`}
               className="h-32 w-full object-cover"
             />
             <button
-              onClick={() => removeFile(index)}
+              onClick={() => removeFile(index, false)} // Pass false for newly selected files
               className="absolute top-1 right-1 bg-red-600 text-white text-xs px-2 py-1 rounded-full"
             >
               ✕
@@ -135,6 +193,7 @@ const UploadImages = forwardRef(({ triggerUpload }, ref) => {
             )}
           </div>
         ))}
+
         <label htmlFor="upload-images" className="border-dotted border">
           <div className="p-10">Add Images</div>
         </label>
