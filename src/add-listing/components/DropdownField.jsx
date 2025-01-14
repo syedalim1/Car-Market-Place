@@ -7,22 +7,33 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const DropdownField = ({ item, handleInputChanges }) => {
-  // Ensure `item` and its properties are defined to prevent runtime errors
-  if (!item || !item.name || !item.label || !Array.isArray(item.options)) {
+const DropdownField = ({ item, handleInputChanges, carInfo }) => {
+  // Validate `item` properties
+  if (
+    !item ||
+    typeof item !== "object" ||
+    !item.name ||
+    !item.label ||
+    !Array.isArray(item.options)
+  ) {
     console.error("Invalid `item` prop passed to DropdownField:", item);
     return null;
   }
 
   return (
     <div className="dropdown-field">
-      {/* Dropdown field with options */}
+      {/* Dropdown field for selecting options */}
       <Select
         onValueChange={(value) => handleInputChanges(item.name, value)}
-        required={item.required || false} // Ensure `required` is a boolean
+        defaultValue={carInfo?.[item.name] || ""}
+        required={item.required || false}
       >
         <SelectTrigger className="w-full">
-          <SelectValue placeholder={item.label || "Select an option"} />
+          <SelectValue
+            placeholder={
+              carInfo?.[item.name] || item.label || "Select an option"
+            }
+          />
         </SelectTrigger>
         <SelectContent className="bg-white">
           {item.options.map((option, index) => (

@@ -1,5 +1,5 @@
 import Header from "@/Header";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import carDetails from "./../Shared/carDetails.json";
 import InputField from "./components/InputField";
 import { Label } from "@radix-ui/react-label";
@@ -10,29 +10,60 @@ import features from "./../Shared/features.json";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { db } from "./../../configs";
-import { CarListing } from "./../../configs/schema";
+import { CarImages, CarListing } from "./../../configs/schema";
 import UploadImages from "./components/UploadImages";
 import IconField from "./components/IconField";
-import { AiOutlineLoading } from "react-icons/ai"; // React icon for loading animation
+import { AiOutlineLoading } from "react-icons/ai";
 import { useToast } from "@/hooks/use-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useUser } from "@clerk/clerk-react";
+import moment from "moment";
+import { eq } from "drizzle-orm";
+import Service from "@/Shared/Service";
 
 function AddListing() {
   const [formData, setFormData] = useState({});
-  const [featuresData, setFeaturesData] = useState([]);
+  const [featuresData, setFeaturesData] = useState({});
   const imageUploaderRef = useRef(null);
   const [triggerUpload, setTriggerUpload] = useState(null);
-  const [loading, setLoading] = useState(false); // Loader state
+  const [loading, setLoading] = useState(false);
   const { toast } = useToast();
-const navigate=useNavigate();
+  const navigate = useNavigate();
+  const { user } = useUser();
+  const [searchParams] = useSearchParams();
+  const [carInfo, setCarInfo] = useState(null);
 
+  const mode = searchParams.get("mode");
+  const listid = searchParams.get("id");
+
+  useEffect(() => {
+    if (mode === "edit") {
+      GetListDetails();
+    }
+  }, []);
+
+  const GetListDetails = async () => {
+    try {
+      const result = await db
+        .select()
+        .from(CarListing)
+        .innerJoin(CarImages, eq(CarListing.id, CarImages.carlistingId))
+        .where(eq(CarListing.id, listid));
+
+      const resp = Service.FormatResult(result);
+      setCarInfo(resp[0]);
+      setFormData(resp[0]);
+      setFeaturesData(resp[0]?.features || {});
+    } catch (error) {
+      console.error("Error fetching listing details:", error);
+    }
+  };
 
   const handleInputChanges = (name, value) => {
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
-    console.log("Form Data:", formData);
   };
 
   const handleFeaturesChange = (name, value) => {
@@ -40,62 +71,59 @@ const navigate=useNavigate();
       ...prevData,
       [name]: value,
     }));
-    console.log(featuresData);
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Start loader when form is submitted
-    console.log("Submitting Form:", formData);
-    toast({
-      title: "Please Wait .......",
-    });
+    setLoading(true);
+    toast({ title: "Please Wait ......." });
 
     try {
-      // Insert car listing data into the database and retrieve the inserted record
-      const result = await db
-        .insert(CarListing)
-        .values({
-          listing_title: formData.listing_title || "Untitled Listing",
-          ...formData,
-          features: JSON.stringify(featuresData), // Convert features to JSON string if needed by the DB schema
-        })
-        .returning({ id: CarListing.id });
-
-      if (result.length > 0) {
-        const carListingId = result[0].id;
-        console.log("Data Saved Successfully, CarListing ID:", carListingId);
-
-        // Set the triggerUpload state to the new CarListing ID
-        setTriggerUpload(carListingId);
-
-        // Trigger image uploads with the new ID
-        const uploadedImageUrls = await imageUploaderRef.current.uploadFiles();
-
-        console.log("Uploaded Image URLs:", uploadedImageUrls);
+      if (mode === "edit") {
+        await db
+          .update(CarListing)
+          .set({
+            ...formData,
+            features: JSON.stringify(featuresData),
+            createdBy: user.primaryEmailAddress.emailAddress,
+            postedOn: moment().format("DD/MM/yyyy"),
+          })
+          .where(eq(CarListing.id, listid));
       } else {
-        console.error("Failed to retrieve CarListing ID");
-      }
-    } catch (error) {
-      console.error("Error Saving Data:", error);
-    } finally {
-      setLoading(false); // Stop loader after the operation is complete
-      toast({
-        title: "SuccessFull Uploaded",
-      });
+        const result = await db
+          .insert(CarListing)
+          .values({
+            ...formData,
+            features: JSON.stringify(featuresData),
+            createdBy: user.primaryEmailAddress.emailAddress,
+            postedOn: moment().format("DD/MM/yyyy"),
+          })
+          .returning({ id: CarListing.id });
 
+        if (result.length > 0) {
+          const carListingId = result[0].id;
+          setTriggerUpload(carListingId);
+          await imageUploaderRef.current.uploadFiles();
+        }
+      }
+
+      toast({ title: "Successfully Uploaded" });
+      navigate("/profile");
+    } catch (error) {
+      console.error("Error saving data:", error);
+      toast({ title: "Error saving data", description: error.message });
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div>
       <Header />
-
       <div className="px-10 md:px-20 my-10">
         <h2 className="font-bold text-4xl text-center text-blue-600">
           🚗 Add New Car Listing
         </h2>
-
         <form
           onSubmit={onSubmit}
           className="p-10 border rounded-xl mt-10 shadow-lg bg-white"
@@ -110,30 +138,32 @@ const navigate=useNavigate();
                   <div className="flex gap-1">
                     <IconField iconName={item.icon} />
                     <Label
-                      htmlFor={item?.name}
+                      htmlFor={item.name}
                       className="block text-sm font-medium text-gray-700"
                     >
-                      {item?.label}
+                      {item.label}
                       {item.required && (
                         <span className="text-red-500"> *</span>
                       )}
                     </Label>
                   </div>
-                  {item?.fieldType === "text" ||
-                  item?.fieldType === "number" ? (
+                  {item.fieldType === "text" || item.fieldType === "number" ? (
                     <InputField
                       item={item}
+                      carInfo={carInfo}
                       handleInputChanges={handleInputChanges}
                     />
-                  ) : item?.fieldType === "dropdown" &&
+                  ) : item.fieldType === "dropdown" &&
                     Array.isArray(item.options) ? (
                     <DropdownField
                       item={item}
+                      carInfo={carInfo}
                       handleInputChanges={handleInputChanges}
                     />
-                  ) : item?.fieldType === "textarea" ? (
+                  ) : item.fieldType === "textarea" ? (
                     <TextAreaField
                       item={item}
+                      carInfo={carInfo}
                       handleInputChanges={handleInputChanges}
                     />
                   ) : null}
@@ -141,14 +171,12 @@ const navigate=useNavigate();
               ))}
             </div>
             <Separator className="text-black pb-5" />
-            Features List
-            <div>
-              <h2 className="font-medium text-xl my-6">Features</h2>
-            </div>
+            <h2 className="font-medium text-xl my-6">Features</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
               {features.features.map((item, index) => (
                 <div key={index} className="flex gap-2 items-center">
                   <Checkbox
+                    checked={featuresData?.[item.name] || false}
                     onCheckedChange={(value) =>
                       handleFeaturesChange(item.name, value)
                     }
@@ -157,20 +185,18 @@ const navigate=useNavigate();
                 </div>
               ))}
             </div>
-            <Separator className="text-black pb-5" />
             <Separator className="my-6" />
             <UploadImages
               ref={imageUploaderRef}
               triggerUpload={triggerUpload}
-              
             />
             <Button
               type="submit"
               className="mt-10 bg-green-500 text-white py-2 px-4 rounded"
-              disabled={loading} // Disable button while loading
+              disabled={loading}
             >
               {loading ? (
-                <AiOutlineLoading className="animate-spin" size={24} />
+                <AiOutlineLoading className="animate-spin mr-2" />
               ) : (
                 "Submit"
               )}

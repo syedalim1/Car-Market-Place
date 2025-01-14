@@ -7,11 +7,15 @@ const Header = () => {
   const { user, isSignedIn } = useUser();
   return (
     <div className="flex justify-between items-center shadow-sm p-10">
-      <img src="/logo.svg" width={150} height={100} alt="" />
+      <Link to={"/"}>
+        <img src="/logo.svg" width={150} height={100} alt="" />
+      </Link>
       <ul className="hidden md:flex gap-16">
-        <li className="font-medium hover:scale-105 transition-all cursor-pointer hover:text-primary  ">
-          Home
-        </li>
+        <Link to={"/"}>
+          <li className="font-medium hover:scale-105 transition-all cursor-pointer hover:text-primary  ">
+            Home
+          </li>
+        </Link>
         <li className="font-medium hover:scale-105 transition-all cursor-pointer hover:text-primary  ">
           Search
         </li>
@@ -32,7 +36,7 @@ const Header = () => {
           </Link>
         </div>
       ) : (
-        <Link to={"/add-profile"}>
+        <Link to={"/add-listing"}>
           <Button>Submit Listing</Button>
         </Link>
       )}
