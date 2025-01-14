@@ -2,7 +2,7 @@
   "carDetails": [
     {
       "label": "Listing Title",
-      "name": "listingTitle",
+      "name": "listing_title",
       "fieldType": "text",
       "required": true,
       "column": 2,
@@ -13,7 +13,7 @@
       "name": "tagline",
       "fieldType": "text",
       "column": 2,
-      "icon": "FaTag"
+      "icon": "FaClipboardList"
     },
     {
       "label": "Original Price",
@@ -24,7 +24,7 @@
     },
     {
       "label": "Selling Price",
-      "name": "sellingPrice",
+      "name": "selling_price",
       "fieldType": "text",
       "required": true,
       "column": 1,
@@ -34,7 +34,17 @@
       "label": "Category",
       "name": "category",
       "fieldType": "dropdown",
-      "options": ["Sedan", "SUV", "Truck", "Coupe", "Convertible", "Van", "Hatchback","Electric","Hybrid"],
+      "options": [
+        "Sedan",
+        "SUV",
+        "Truck",
+        "Coupe",
+        "Convertible",
+        "Van",
+        "Hatchback",
+        "Electric",
+        "Hybrid"
+      ],
       "required": true,
       "column": 1,
       "icon": "FaCar"
@@ -48,7 +58,7 @@
       "column": 1,
       "icon": "FaCheckCircle"
     },
-    
+
     {
       "label": "Make",
       "name": "make",
@@ -119,7 +129,7 @@
     },
     {
       "label": "Drive Type",
-      "name": "driveType",
+      "name": "drive_type",
       "fieldType": "dropdown",
       "options": ["FWD", "RWD", "AWD", "4WD"],
       "required": true,
@@ -137,7 +147,7 @@
     },
     {
       "label": "Fuel Type",
-      "name": "fuelType",
+      "name": "fuel_type",
       "fieldType": "dropdown",
       "options": ["Petrol", "Diesel", "Electric", "Hybrid"],
       "required": true,
@@ -154,7 +164,7 @@
     },
     {
       "label": "Engine Size",
-      "name": "engineSize",
+      "name": "engine_size",
       "fieldType": "text",
       "column": 1,
       "icon": "FaWrench"
@@ -192,7 +202,7 @@
     },
     {
       "label": "Offer Type",
-      "name": "offerType",
+      "name": "offer_type",
       "fieldType": "dropdown",
       "options": ["Buy", "Hot Offer", "Sell", "Urgent"],
       "column": 2,
@@ -200,7 +210,7 @@
     },
     {
       "label": "Listing Description",
-      "name": "listingDescription",
+      "name": "listing_description",
       "fieldType": "textarea",
       "required": true,
       "column": 2,
