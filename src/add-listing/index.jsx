@@ -105,6 +105,8 @@ function AddListing() {
             ...formData,
             features: JSON.stringify(featuresData),
             createdBy: user.primaryEmailAddress.emailAddress,
+            username: user?.username,
+            userImageUrl: user?.userImageUrl,
             postedOn: moment().format("DD/MM/yyyy"),
           })
           .where(eq(CarListing.id, listid));

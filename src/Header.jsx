@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div className="flex justify-between items-center shadow-sm p-10">
+    <div className="flex justify-between items-center shadow-sm p-10  bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100">
       {/* Logo Section */}
       <Link to={"/"}>
         <img src="/logo.svg" width={150} height={100} alt="Logo" />

@@ -5,6 +5,14 @@ import { CarListing, CarImages } from "../../../configs/schema"; // Adjust paths
 import { eq } from "drizzle-orm";
 import Header from "@/Header";
 import DetailHeaders from "../components/DetailHeaders";
+import ImageGallery from "../components/ImageGallery";
+import CarDescription from "../components/CarDescription";
+import Features from "../components/Features";
+import Pricing from "../components/Pricing";
+import Specification from "../components/Specification";
+import OwnerDetails from "../components/OwnerDetails";
+import FinancialCalculater from "../components/FinancialCalculater";
+import MostSearchedCar from "@/MostSearchedCar";
 
 const CarDetails = () => {
   const { id } = useParams(); // Get car ID from the URL
@@ -21,6 +29,7 @@ const CarDetails = () => {
 
         if (result.length > 0) {
           setCar(result[0]);
+          console.log(car);
         } else {
           console.error("Car not found!");
         }
@@ -41,55 +50,21 @@ const CarDetails = () => {
       <Header />
       <div className="p-10 md:px-20">
         <DetailHeaders car={car} />
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        {/* Image Section */}
-        <div>
-          <img
-            src={car?.images?.[0] || "/placeholder-image.png"}
-            alt={car.CarListing.title}
-            className="rounded-lg w-full h-auto shadow-lg"
-          />
-        </div>
-
-        {/* Details Section */}
-        <div>
-          <h1 className="text-4xl font-bold mb-4">{car.CarListing.title}</h1>
-          <p className="text-lg text-gray-600 mb-4">
-            {car.CarListing.description}
-          </p>
-          <div className="flex items-center gap-5">
-            <span className="text-xl font-semibold text-green-600">
-              ${car.CarListing.price}
-            </span>
-            <span className="text-sm text-gray-500">
-              Condition: {car.CarListing.condition}
-            </span>
+        <div className=" grid grid-cols-2 md:grid-cols-3 w-full mt-10 gap-5">
+          <div className="md:col-span-2 ">
+            <ImageGallery car={car} />
+            <CarDescription car={car} />
+            <Features features={car.CarListing.features} />
+            <FinancialCalculater car={car} />
           </div>
-          <div className="mt-5">
-            <ul className="list-disc list-inside">
-              <li>
-                <strong>Make:</strong> {car.CarListing.make}
-              </li>
-              <li>
-                <strong>Model:</strong> {car.CarListing.model}
-              </li>
-              <li>
-                <strong>Year:</strong> {car.CarListing.year}
-              </li>
-              <li>
-                <strong>Mileage:</strong> {car.CarListing.mileage} miles
-              </li>
-              <li>
-                <strong>Fuel Type:</strong> {car.CarListing.fuelType}
-              </li>
-            </ul>
+          <div className="">
+            <Pricing car={car} />
+            <Specification car={car} />
+            <OwnerDetails car={car} />
           </div>
-          <button className="mt-5 bg-black text-white px-5 py-2 rounded-lg hover:bg-gray-800 transition-all">
-            Contact Seller
-          </button>
         </div>
+        <MostSearchedCar />
       </div>
     </div>
   );

@@ -19,31 +19,27 @@ const FormatResult = (resp) => {
     // If the listing doesn't exist yet in the result, create it
     if (!result[listingId]) {
       result[listingId] = {
-        car: item.CarListing,  // Store the car listing details
-        images: [],            // Initialize the images array
+        car: item.CarListing, // Store the car listing details
+        images: [], // Initialize the images array
       };
     }
 
     // Check if carImages exists and has an imageUrl, then add it to the images array
     if (item.carImages?.imageUrl) {
-      result[listingId].images.push(item.carImages.imageUrl);  // Add the image URL to the array
+      result[listingId].images.push(item.carImages.imageUrl); // Add the image URL to the array
     }
   });
 
   // Convert the result object into an array, combining car details and images
   Object.values(result).forEach((item) => {
     finalResult.push({
-      ...item.car,      // Spread the car listing details
-      images: item.images,  // Attach the array of images
+      ...item.car, // Spread the car listing details
+      images: item.images, // Attach the array of images
     });
   });
 
-  return finalResult;  // Return the formatted result
+  return finalResult; // Return the formatted result
 };
-
-export default {FormatResult}
-
-
 
 /**
  * Create a SendBird user.
@@ -95,4 +91,4 @@ const CreateSendBirdChannel = (users, title) => {
 };
 
 // Export functions for use in other files
-export { CreateSendBirdUser, CreateSendBirdChannel };
+export default { CreateSendBirdUser, CreateSendBirdChannel, FormatResult };

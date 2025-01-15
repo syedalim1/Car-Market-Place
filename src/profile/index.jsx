@@ -4,7 +4,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FiUser, FiLock, FiSettings } from "react-icons/fi"; // Importing icons from react-icons
 import MyListing from "./components/MyListing";
 import Inbox from "./components/Inbox";
-import MyProfile from "./components/MyProfile";
+import { MdMessage } from "react-icons/md";
+
 
 const Profile = () => {
   return (
@@ -29,7 +30,7 @@ const Profile = () => {
             value="inbox"
             className="flex items-center gap-2 py-2 px-4 rounded-lg hover:scale-105 transition-transform focus:ring-2 focus:ring-white "
           >
-            <FiLock className="text-lg" />
+            <MdMessage className="text-lg" />
             Inbox
           </TabsTrigger>
 
@@ -53,7 +54,7 @@ const Profile = () => {
         </TabsContent>
 
         <TabsContent value="profile" className="mt-6">
-          <MyProfile />
+          <Profile />
         </TabsContent>
       </Tabs>
     </div>
