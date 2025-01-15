@@ -19,7 +19,7 @@ const Search = () => {
   return (
     <div
       className="flex p-2 md:p-5 bg-white rounded-md 
-      md:rounded-full flex-col md:flex-row gap-10 px-5 items-center w-[60%]"
+      md:rounded-full flex-col md:flex-row gap-10 px-5 items-center w-[100%]"
     >
       {/* Car Type Selection */}
       

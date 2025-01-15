@@ -1,62 +1,76 @@
-import Header from "@/Header";
 import React from "react";
+import Header from "@/Common/Header";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FiUser, FiLock, FiSettings } from "react-icons/fi"; // Importing icons from react-icons
+import { FiUser, FiSettings } from "react-icons/fi";
+import { MdMessage } from "react-icons/md";
 import MyListing from "./components/MyListing";
 import Inbox from "./components/Inbox";
-import { MdMessage } from "react-icons/md";
-
 
 const Profile = () => {
   return (
-    <div>
+    <div className="bg-gray-100 min-h-screen">
+      {/* Header */}
       <Header />
 
-      <Tabs
-        defaultValue="my-listing"
-        className="w-full  p-6 bg-white rounded-lg shadow-xl"
-      >
-        {/* Tabs List with Icons */}
-        <TabsList className="flex justify-around bg-gradient-to-r from-blue-500 to-green-500 text-white p-2 rounded-md shadow-lg ">
-          <TabsTrigger
-            value="my-listing"
-            className="flex items-center gap-2 py-2 px-4 rounded-lg hover:scale-105 transition-transform focus:ring-2 focus:ring-white "
-          >
-            <FiUser className="text-lg" />
-            My Listing
-          </TabsTrigger>
+      {/* Profile Tabs Section */}
+      <div className="container mx-auto px-4 py-8">
+        <Tabs
+          defaultValue="my-listing"
+          className="w-full p-4 bg-white rounded-xl shadow-lg"
+        >
+          {/* Tabs List */}
+          <TabsList className="flex flex-col sm:flex-row justify-between bg-gradient-to-r from-indigo-500 to-purple-500 text-white p-4 rounded-xl shadow-md">
+            <TabsTrigger
+              value="my-listing"
+              className="flex items-center justify-center gap-2 py-2 px-3 rounded-lg hover:scale-105 transition-transform focus:ring-2 focus:ring-white mb-2 sm:mb-0"
+              aria-label="My Listing"
+            >
+              <FiUser className="text-lg" />
+              <span>My Listing</span>
+            </TabsTrigger>
 
-          <TabsTrigger
-            value="inbox"
-            className="flex items-center gap-2 py-2 px-4 rounded-lg hover:scale-105 transition-transform focus:ring-2 focus:ring-white "
-          >
-            <MdMessage className="text-lg" />
-            Inbox
-          </TabsTrigger>
+            <TabsTrigger
+              value="inbox"
+              className="flex items-center justify-center gap-2 py-2 px-3 rounded-lg hover:scale-105 transition-transform focus:ring-2 focus:ring-white mb-2 sm:mb-0"
+              aria-label="Inbox"
+            >
+              <MdMessage className="text-lg" />
+              <span>Inbox</span>
+            </TabsTrigger>
 
-          <TabsTrigger
-            value="profile"
-            className="flex items-center gap-2 py-2 px-4 rounded-lg hover:scale-105 transition-transform focus:ring-2 focus:ring-white"
-          >
-            <FiSettings className="text-lg" />
-            Profile
-          </TabsTrigger>
-        </TabsList>
+            <TabsTrigger
+              value="profile"
+              className="flex items-center justify-center gap-2 py-2 px-3 rounded-lg hover:scale-105 transition-transform focus:ring-2 focus:ring-white"
+              aria-label="Profile"
+            >
+              <FiSettings className="text-lg" />
+              <span>Profile</span>
+            </TabsTrigger>
+          </TabsList>
 
-        {/* Tabs Content */}
-        <TabsContent value="my-listing" className="mt-6">
-          <MyListing />
-        </TabsContent>
+          {/* Tabs Content */}
+          <div className="mt-6">
+            <TabsContent value="my-listing">
+              <MyListing />
+            </TabsContent>
 
-        <TabsContent value="inbox" className="mt-6">
-          {" "}
-          <Inbox />
-        </TabsContent>
+            <TabsContent value="inbox">
+              <Inbox />
+            </TabsContent>
 
-        <TabsContent value="profile" className="mt-6">
-          <Profile />
-        </TabsContent>
-      </Tabs>
+            <TabsContent value="profile">
+              <div className="text-center text-gray-600 p-8">
+                <h2 className="text-2xl font-semibold text-purple-700">
+                  Profile Section
+                </h2>
+                <p className="mt-4 text-lg">
+                  This section is under construction. Please check back later!
+                </p>
+              </div>
+            </TabsContent>
+          </div>
+        </Tabs>
+      </div>
     </div>
   );
 };

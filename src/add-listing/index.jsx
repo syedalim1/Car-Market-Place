@@ -1,4 +1,4 @@
-import Header from "@/Header";
+import Header from "@/Common/Header";
 import React, { useState, useRef, useEffect } from "react";
 import carDetails from "./../Shared/carDetails.json";
 import InputField from "./components/InputField";

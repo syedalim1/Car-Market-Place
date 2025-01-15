@@ -5,12 +5,13 @@ import {
   SignInButton,
   UserButton,
 } from "@clerk/clerk-react";
-import Header from "./Header";
+import Header from "./Common/Header";
 import Hero from "./Hero";
 import Category from "./Category";
 import MostSearchedCar from "./MostSearchedCar";
 import InfoSection from "./components/ui/InfoSection";
-import Footer from "./components/ui/Footer";
+import Footer from "./Common/Footer";
+
 
 function Home() {
   return (

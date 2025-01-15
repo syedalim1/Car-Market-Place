@@ -1,4 +1,4 @@
-import Header from "@/Header";
+import Header from "@/Common/Header";
 import Search from "@/Search";
 import { db } from "../../../configs";
 import { CarImages, CarListing } from "../../../configs/schema";

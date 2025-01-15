@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { db } from "../../../configs"; // Adjust the path to your database configuration
 import { CarListing, CarImages } from "../../../configs/schema"; // Adjust paths to schema
 import { eq } from "drizzle-orm";
-import Header from "@/Header";
+import Header from "@/Common/Header";
 import DetailHeaders from "../components/DetailHeaders";
 import ImageGallery from "../components/ImageGallery";
 import CarDescription from "../components/CarDescription";

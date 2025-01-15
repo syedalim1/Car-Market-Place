@@ -5,7 +5,7 @@ import { CarListing, CarImages } from "../../configs/schema"; // Correct paths t
 import { eq } from "drizzle-orm";
 import CarItem from "@/CarItem";
 import Service from "../Shared/Service"; // Ensure correct path to Service
-import Header from "@/Header";
+import Header from "@/Common/Header";
 
 const SearchByTarget = () => {
   const [searchParams] = useSearchParams();
