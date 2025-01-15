@@ -8,9 +8,12 @@ import Contact from "./contact";
 import { ClerkProvider } from "@clerk/clerk-react";
 import Profile from "./profile";
 import AddListing from "./add-listing";
-// Import your Publishable Key
-const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+import SeachBycategory from "./search/[category]";
 import { Toaster } from "@/components/ui/toaster";
+import SearchByTarget from "./SearchByTarget";
+import CarDetails from "./CarDetails/[id]/CarDetails";
+
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
 if (!PUBLISHABLE_KEY) {
   throw new Error("Missing Publishable Key");
@@ -18,19 +21,14 @@ if (!PUBLISHABLE_KEY) {
 
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
-  {
-    path: "/contact",
-    element: <Contact />,
-  },
-  {
-    path: "/profile",
-    element: <Profile />,
-  },
-  {
-    path: "/add-listing",
-    element: <AddListing />,
-  },
+  { path: "/contact", element: <Contact /> },
+  { path: "/profile", element: <Profile /> },
+  { path: "/add-listing", element: <AddListing /> },
+  { path: "/searching", element: <SearchByTarget /> },
+  { path: "/search/:category", element: <SeachBycategory /> },
+  { path: "/car-details/:id", element: <CarDetails /> }, // New Route
 ]);
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
