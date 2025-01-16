@@ -34,7 +34,7 @@ const SeachBycategory = () => {
   return (
     <div>
       <Header />
-      <div className="p-10 bg-black flex justify-center">
+      <div className="p-10 flex justify-center">
         <Search />
       </div>
       <div className="p-10 md:px-20">
@@ -51,7 +51,6 @@ const SeachBycategory = () => {
                   key={index}
                   className="h-[370px] rounded-xl bg-slate-200 animate-pulse"
                 ></div>
-                
               ))}
         </div>
       </div>
