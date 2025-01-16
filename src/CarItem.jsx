@@ -3,20 +3,19 @@ import { Separator } from "@/components/ui/separator";
 import { LuFuel } from "react-icons/lu";
 import { TbBrandSpeedtest } from "react-icons/tb";
 import { GiGearStickPattern } from "react-icons/gi";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import { useNavigate } from "react-router-dom";
 
 const CarItem = ({ car }) => {
   const navigate = useNavigate();
 
   const handleLinkClick = () => {
     navigate(`/car-details/${car.id}`);
-    window.location.reload(); // Force a page refresh
   };
 
   return (
     <div
       onClick={handleLinkClick}
-      className="relative border rounded-lg shadow-lg p-4 bg-white cursor-pointer"
+      className="relative border rounded-lg shadow-lg p-4 bg-white cursor-pointer hover:shadow-2xl transition-transform transform hover:scale-105"
     >
       {/* New Badge */}
       <div className="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded">
@@ -25,7 +24,7 @@ const CarItem = ({ car }) => {
 
       {/* Image */}
       <img
-        src={car?.images?.[0] || "default-image.jpg"} // Fallback to a default image if no car image
+        src={car?.images?.[0] || "default-image.jpg"}
         alt={car?.listing_title || "Car"}
         className="rounded-t-xl w-full h-48 object-cover mb-4"
       />
@@ -39,7 +38,7 @@ const CarItem = ({ car }) => {
 
       <Separator className="bg-black" />
 
-      {/* Car Details (Fuel, Mileage, Gear Type) */}
+      {/* Car Details */}
       <div className="grid grid-cols-3 mt-5 text-center">
         <div className="flex flex-col items-center">
           <LuFuel className="text-lg mb-2" />
@@ -61,7 +60,10 @@ const CarItem = ({ car }) => {
       <div className="flex items-center justify-between">
         <h2 className="font-bold text-xl">${car?.selling_price || "0.00"}</h2>
 
-        <button className="mt-3 bg-black text-white px-3 py-1 rounded-lg hover:bg-gray-800 transition-all">
+        <button
+          className="mt-3 bg-black text-white px-3 py-1 rounded-lg hover:bg-gray-800 transition-all"
+          onClick={handleLinkClick}
+        >
           View Details
         </button>
       </div>

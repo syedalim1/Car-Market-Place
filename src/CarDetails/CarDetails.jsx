@@ -15,6 +15,7 @@ import FinancialCalculater from "./components/FinancialCalculater";
 import MostSearchedCar from "@/MostSearchedCar";
 import { Button } from "@/components/ui/button";
 import { FaPhoneAlt, FaCommentAlt } from "react-icons/fa"; // Add contact icons for interaction
+import Footer from "@/Common/Footer";
 
 const CarDetails = () => {
   const { id } = useParams(); // Get car ID from the URL
@@ -90,6 +91,7 @@ const CarDetails = () => {
 
         <MostSearchedCar />
       </div>
+      <Footer/>
     </div>
   );
 };

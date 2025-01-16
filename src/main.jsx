@@ -13,6 +13,7 @@ import { Toaster } from "@/components/ui/toaster";
 import SearchByTarget from "./SearchByTarget";
 import CarDetails from "./CarDetails/CarDetails";
 import Profile from "./profile";
+import Header from "./Common/Header";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -35,6 +36,7 @@ createRoot(document.getElementById("root")).render(
     <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
       <RouterProvider router={router} />
       <Toaster />
+      
     </ClerkProvider>
   </StrictMode>
 );

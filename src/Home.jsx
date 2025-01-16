@@ -18,7 +18,6 @@ function Home() {
     // Header
     <div>
       <Header />
-
       <Hero />
       <Category />
       <MostSearchedCar />
