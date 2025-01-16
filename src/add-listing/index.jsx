@@ -1,5 +1,5 @@
-import Header from "@/Common/Header";
 import React, { useState, useRef, useEffect } from "react";
+import Header from "@/Common/Header";
 import carDetails from "./../Shared/carDetails.json";
 import InputField from "./components/InputField";
 import { Label } from "@radix-ui/react-label";
@@ -29,7 +29,7 @@ function AddListing() {
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
-  const { user } = useUser();
+  const { user, isLoaded } = useUser(); // 'isLoaded' checks if the user is loaded
   const [searchParams] = useSearchParams();
   const [carInfo, setCarInfo] = useState(null);
 
@@ -37,10 +37,11 @@ function AddListing() {
   const listid = searchParams.get("id");
 
   useEffect(() => {
-    if (mode === "edit") {
+    if (mode === "edit" && isLoaded) {
       GetListDetails();
+      console.log(user); // Ensure that `user` is available here
     }
-  }, []);
+  }, [mode, listid, isLoaded]);
 
   const GetListDetails = async () => {
     try {
@@ -74,19 +75,15 @@ function AddListing() {
   };
 
   const validateForm = () => {
-    // Get all required fields from carDetails
     const requiredFields = carDetails.carDetails.filter(
       (item) => item.required
     );
-
-    // Check if all required fields have values
     const isValid = requiredFields.every((field) => formData[field.name]);
 
     if (!isValid) {
       toast({ title: "Please fill in all required fields." });
       return false;
     }
-
     return true;
   };
 
@@ -138,16 +135,20 @@ function AddListing() {
     }
   };
 
+  if (!isLoaded) {
+    return <div>Loading user...</div>; // Render a loading message until user data is loaded
+  }
+
   return (
     <div>
       <Header />
-      <div className="px-10 md:px-20 my-10">
+      <div className="px-4 sm:px-8 lg:px-10 my-10">
         <h2 className="font-bold text-4xl text-center text-blue-600">
           🚗 Add New Car Listing
         </h2>
         <form
           onSubmit={onSubmit}
-          className="p-10 border rounded-xl mt-10 shadow-lg bg-white"
+          className="p-6 sm:p-10 border rounded-xl mt-10 shadow-lg bg-white"
         >
           <div>
             <h2 className="font-medium text-xl mb-6 text-gray-700">
@@ -193,7 +194,7 @@ function AddListing() {
             </div>
             <Separator className="text-black pb-5" />
             <h2 className="font-medium text-xl my-6">Features</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
               {features.features.map((item, index) => (
                 <div key={index} className="flex gap-2 items-center">
                   <Checkbox

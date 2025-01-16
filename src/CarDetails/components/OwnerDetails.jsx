@@ -20,7 +20,6 @@ function OwnerDetails({ car }) {
 
       if (!userId || !user?.fullName || !user?.imageUrl) {
         console.error("User information is incomplete.");
-
         return;
       }
 
@@ -60,28 +59,28 @@ function OwnerDetails({ car }) {
   };
 
   return (
-    <div className="p-8 border rounded-xl shadow-lg m-7 bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100">
+    <div className="p-2 sm:p-8 border rounded-xl shadow-lg mt-7 bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 sm:p-6 md:p-8 lg:p-10">
       <div className="text-center">
-        <h2 className="font-semibold text-3xl text-purple-700 mb-4">
-          Owner/Dealer Details
+        <h2 className="font-semibold text-xl sm:text-3xl text-purple-700 mb-4">
+          Owner Details
         </h2>
         <img
           src={car?.CarListing?.userImageUrl || "default-avatar.jpg"}
           alt="Owner"
-          className="h-[80px] w-[80px] rounded-full mx-auto border-4 border-purple-500 shadow-md"
+          className="h-[80px] w-[80px] rounded-full mx-auto border-4 border-purple-500 shadow-md sm:h-[60px] sm:w-[60px] md:h-[80px] md:w-[80px]"
         />
-        <h2 className="font-bold text-2xl mt-4 text-blue-700">
+        <h2 className="font-bold text-sm  mt-4 text-blue-700 sm:text-xl md:text-2xl">
           {car?.CarListing?.fullName || "Unknown User"}
         </h2>
       </div>
-      <h3 className="text-gray-600 text-lg mt-2 text-center">
+      <h3 className="text-gray-600 text-sm mt-2 text-center sm:text-base md:text-lg">
         {car?.CarListing?.createdBy || "Unknown Creator"}
       </h3>
       <Button
         onClick={onMessageOwnerButtonClick}
-        className="w-full mt-8 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl hover:from-purple-500 hover:to-blue-500 shadow-md transition-all duration-300"
+        className="w-full mt-8  bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl hover:from-purple-500 hover:to-blue-500 shadow-md transition-all duration-300 sm:w-full md:w-3/4 lg:w-1/2 mx-auto"
       >
-        Message Owner for More Details
+        <p className="text-sm sm:text-xl"> Message To Owner</p>
       </Button>
     </div>
   );

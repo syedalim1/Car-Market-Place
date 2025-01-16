@@ -2,40 +2,51 @@ import React, { useState } from "react";
 import { FaRegCheckSquare, FaCheckSquare } from "react-icons/fa";
 
 function Features({ features }) {
-  // State to control checkbox values
   const [checkedFeatures, setCheckedFeatures] = useState(features);
 
-  // Handle checkbox change
   const handleCheckboxChange = (featureKey) => {
     setCheckedFeatures((prev) => ({
       ...prev,
-      [featureKey]: !prev[featureKey], // Toggle the checkbox value
+      [featureKey]: !prev[featureKey],
     }));
+  };
+
+  const scrollToFeatures = () => {
+    const featuresSection = document.getElementById("features-section");
+    if (featuresSection) {
+      featuresSection.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
     <div className="p-5 border shadow-md rounded-xl my-7 bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100">
-      <h2 className="font-medium text-2xl text-gray-800 mb-5">Features</h2>
-      {/* Iterating over the features object */}
-      <div className="grid grid-cols-2 md:grid-cols-3  gap-8">
-        {Object.entries(features).map(([featureKey, value]) => {
-          return (
-            <div
-              key={featureKey}
-              className="flex items-center gap-3 cursor-pointer"
-              onClick={() => handleCheckboxChange(featureKey)} // Handle change on click
-            >
-              {/* Toggle between checked and unchecked icons */}
-              {checkedFeatures[featureKey] ? (
-                <FaCheckSquare className="text-blue-500 text-xl" />
-              ) : (
-                <FaRegCheckSquare className="text-gray-400 text-xl" />
-              )}
-              <span className="text-gray-700">{featureKey}</span>{" "}
-              {/* Display feature name */}
-            </div>
-          );
-        })}
+      {/* Scroll Down Button */}
+      
+
+      {/* Features Section */}
+      <h2 className="font-medium text-2xl text-gray-800 mb-5 sticky fixed">
+        Features
+      </h2>
+      <div
+        id="features-section"
+        className="grid grid-cols-1 md:grid-cols-2 gap-8 max-h-[300px] overflow-y-auto"
+      >
+        {Object.entries(features).map(([featureKey, value]) => (
+          <div
+            key={featureKey}
+            className="flex items-center gap-3 cursor-pointer"
+            onClick={() => handleCheckboxChange(featureKey)}
+          >
+            {checkedFeatures[featureKey] ? (
+              <FaCheckSquare className="text-blue-500 text-[15px] sm:text-xl" />
+            ) : (
+              <FaRegCheckSquare className="text-gray-400 text-[15px] sm:text-xl" />
+            )}
+            <span className="text-gray-700 text-[15px] font-bold sm:text-xl">
+              {featureKey}
+            </span>
+          </div>
+        ))}
       </div>
     </div>
   );

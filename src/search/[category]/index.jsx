@@ -39,7 +39,7 @@ const SeachBycategory = () => {
       </div>
       <div className="p-10 md:px-20">
         <h2 className="text-4xl font-bold capitalize">{category}</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-7">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-7">
           {Car.length > 0
             ? Car.map((item, index) => (
                 <div key={index}>
@@ -51,6 +51,7 @@ const SeachBycategory = () => {
                   key={index}
                   className="h-[370px] rounded-xl bg-slate-200 animate-pulse"
                 ></div>
+                
               ))}
         </div>
       </div>
