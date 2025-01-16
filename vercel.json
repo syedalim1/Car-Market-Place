@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/car-details/:id",
+      "destination": "/car-details/:id",
+      "permanent": true
+    }
+  ]
+}
