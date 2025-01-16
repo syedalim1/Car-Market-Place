@@ -29,7 +29,7 @@ function AddListing() {
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
-  const { user, isLoaded } = useUser(); // 'isLoaded' checks if the user is loaded
+  const { user, isLoaded } = useUser();
   const [searchParams] = useSearchParams();
   const [carInfo, setCarInfo] = useState(null);
 
@@ -39,9 +39,9 @@ function AddListing() {
   useEffect(() => {
     if (mode === "edit" && isLoaded) {
       GetListDetails();
-      console.log(user); // Ensure that `user` is available here
     }
   }, [mode, listid, isLoaded]);
+
 
   const GetListDetails = async () => {
     try {
@@ -61,24 +61,20 @@ function AddListing() {
   };
 
   const handleInputChanges = (name, value) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleFeaturesChange = (name, value) => {
-    setFeaturesData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setFeaturesData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const validateForm = () => {
     const requiredFields = carDetails.carDetails.filter(
       (item) => item.required
     );
-    const isValid = requiredFields.every((field) => formData[field.name]);
+    const isValid = requiredFields.every(
+      (field) => formData[field.name] && formData[field.name].trim() !== ""
+    );
 
     if (!isValid) {
       toast({ title: "Please fill in all required fields." });
@@ -101,9 +97,9 @@ function AddListing() {
           .set({
             ...formData,
             features: JSON.stringify(featuresData),
-            createdBy: user.primaryEmailAddress.emailAddress,
-            username: user?.username,
-            userImageUrl: user?.userImageUrl,
+            createdBy: user?.primaryEmailAddress?.emailAddress || "Unknown",
+            username: user?.username || "Anonymous",
+            userImageUrl: user?.profileImageUrl || "",
             postedOn: moment().format("DD/MM/yyyy"),
           })
           .where(eq(CarListing.id, listid));
@@ -113,7 +109,8 @@ function AddListing() {
           .values({
             ...formData,
             features: JSON.stringify(featuresData),
-            createdBy: user.primaryEmailAddress.emailAddress,
+            username:user?.username,
+            createdBy: user?.primaryEmailAddress?.emailAddress || "Unknown",
             postedOn: moment().format("DD/MM/yyyy"),
           })
           .returning({ id: CarListing.id });
@@ -136,7 +133,7 @@ function AddListing() {
   };
 
   if (!isLoaded) {
-    return <div>Loading user...</div>; // Render a loading message until user data is loaded
+    return <div>Loading user...</div>;
   }
 
   return (
