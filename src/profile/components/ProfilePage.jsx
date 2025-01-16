@@ -36,7 +36,6 @@ const ProfilePage = () => {
   };
 
 
-
   // Call the function
 
   if (!isLoaded) {
@@ -54,7 +53,8 @@ const ProfilePage = () => {
             className="w-24 h-24 rounded-full object-cover mb-4"
           />
         </div>
-       </div>
+       
+      </div>
 
       <div className="space-y-4">
         <div>

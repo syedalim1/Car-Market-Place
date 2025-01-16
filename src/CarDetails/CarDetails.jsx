@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { db } from "../../../configs"; // Adjust the path to your database configuration
-import { CarListing, CarImages } from "../../../configs/schema"; // Adjust paths to schema
+import { db } from "../../configs"; // Adjust the path to your database configuration
+import { CarListing, CarImages } from "../../configs/schema"; // Adjust paths to schema
 import { eq } from "drizzle-orm";
 import Header from "@/Common/Header";
-import DetailHeaders from "../components/DetailHeaders";
-import ImageGallery from "../components/ImageGallery";
-import CarDescription from "../components/CarDescription";
-import Features from "../components/Features";
-import Pricing from "../components/Pricing";
-import Specification from "../components/Specification";
-import OwnerDetails from "../components/OwnerDetails";
-import FinancialCalculater from "../components/FinancialCalculater";
+import DetailHeaders from "./components/DetailHeaders";
+import ImageGallery from "./components/ImageGallery";
+import CarDescription from "./components/CarDescription";
+import Features from "./components/Features";
+import Pricing from "./components/Pricing";
+import Specification from "./components/Specification";
+import OwnerDetails from "./components/OwnerDetails";
+import FinancialCalculater from "./components/FinancialCalculater";
 import MostSearchedCar from "@/MostSearchedCar";
 import { Button } from "@/components/ui/button";
 import { FaPhoneAlt, FaCommentAlt } from "react-icons/fa"; // Add contact icons for interaction
@@ -89,9 +89,6 @@ const CarDetails = () => {
         </div>
 
         <MostSearchedCar />
-
-  
-
       </div>
     </div>
   );

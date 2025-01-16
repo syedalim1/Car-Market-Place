@@ -11,7 +11,7 @@ import AddListing from "./add-listing";
 import SeachBycategory from "./search/[category]";
 import { Toaster } from "@/components/ui/toaster";
 import SearchByTarget from "./SearchByTarget";
-import CarDetails from "./CarDetails/[id]/CarDetails";
+import CarDetails from "./CarDetails/CarDetails";
 import Profile from "./profile";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
