@@ -18,12 +18,12 @@ const Search = () => {
 
   return (
     <div
-      className="flex p-4 md:p-6  rounded-md 
-      md:rounded-full flex-col md:flex-row gap-10 px-5 items-center w-[100%] transition-all shadow-xl hover:scale-105"
+      className="flex  gap-2 flex-row md:p-4 md:p-6  rounded-md 
+      md:rounded-full  md:flex-row md:gap-10 md:px-5 items-center md:w-[100%] transition-all  hover:scale-105"
     >
       {/* Car Type Selection */}
-      <Select onValueChange={(value) => setCar(value)}>
-        <SelectTrigger className="outline-none md:border-none w-full shadow-md rounded-lg transition-all focus:ring-2 focus:ring-indigo-400 p-2 text-lg">
+      <Select onValueChange={(value) => setCar(value)} className="">
+        <SelectTrigger className="outline-none rounded-full md:border-none md:w-full shadow-md  transition-all focus:ring-2 focus:ring-indigo-400 p-2 text-lg">
           <SelectValue placeholder="Cars" />
         </SelectTrigger>
         <SelectContent className="bg-white rounded-md shadow-lg">
@@ -42,8 +42,8 @@ const Search = () => {
 
       {/* Car Make Selection */}
       <Select onValueChange={(value) => setMake(value)}>
-        <SelectTrigger className="outline-none md:border-none w-full shadow-md rounded-lg transition-all focus:ring-2 focus:ring-indigo-400 p-2 text-lg">
-          <SelectValue placeholder="Car Makes" />
+        <SelectTrigger className="outline-none rounded-full md:border-none w-full shadow-md  transition-all focus:ring-2 focus:ring-indigo-400 p-2 text-lg">
+          <SelectValue placeholder="Car Makes"  />
         </SelectTrigger>
         <SelectContent className="bg-white rounded-md shadow-lg">
           {Data.CarMakes.map((maker, index) => (
@@ -61,7 +61,7 @@ const Search = () => {
 
       {/* Price Selection */}
       <Select onValueChange={(value) => setPrice(value)}>
-        <SelectTrigger className="outline-none md:border-none w-full shadow-md rounded-lg transition-all focus:ring-2 focus:ring-indigo-400 p-2 text-lg">
+        <SelectTrigger className="outline-none rounded-full md:border-none w-full shadow-md  transition-all focus:ring-2 focus:ring-indigo-400 p-2 text-lg">
           <SelectValue placeholder="Pricing" />
         </SelectTrigger>
         <SelectContent className="bg-white rounded-md shadow-lg">

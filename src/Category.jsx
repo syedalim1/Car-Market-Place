@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Category = () => {
   return (
-    <div className="mt-[200px] ">
+    <div className="md:mt-[200px] ">
       <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">
         Browse By Type
       </h2>
