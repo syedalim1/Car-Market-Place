@@ -28,7 +28,7 @@ const FinancialCalculater = () => {
   };
 
   return (
-    <div className="sm:p-8 p-2 w-full  border shadow-lg bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100">
+    <div className="sm:p-8 p-2 w-full   ">
       <h2 className="font-bold text-[15px] sm:text-3xl text-purple-700 mb-6">
         Financial Calculator
       </h2>

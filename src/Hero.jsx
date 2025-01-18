@@ -2,7 +2,7 @@ import Search from "./Search";
 
 const Hero = () => {
   return (
-    <div className="flex flex-col items-center sm:p-10 sm:py-20 gap-6 sm:h-[650px] w-full bg-[#eef0fc] py-5">
+    <div className="flex flex-col items-center sm:p-10 sm:py-20 gap-6 sm:h-[650px] w-full bg-white py-5">
       <h2 className="text-xl font-bold sm:text-lg">
         Find cars for sale and for rent near you
       </h2>

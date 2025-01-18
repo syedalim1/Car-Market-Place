@@ -14,7 +14,7 @@ const UploadImages = forwardRef(({ triggerUpload, carInfo, mode }, ref) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [uploadProgress, setUploadProgress] = useState({});
   const cld = new Cloudinary({ cloud: { cloudName: "duutgarew" } });
-  const [EditUploadImage, setEditUploadImage] = useState();
+  const [EditUploadImage, setEditUploadImage] = useState([]);
 
   const [id, setId] = useState();
 
@@ -23,6 +23,7 @@ const UploadImages = forwardRef(({ triggerUpload, carInfo, mode }, ref) => {
     const files = Array.from(event.target.files);
     setSelectedFiles((prevFiles) => [...prevFiles, ...files]);
   };
+
   useEffect(() => {
     if (mode === "edit" && carInfo?.images?.length > 0) {
       setEditUploadImage(carInfo.images);
@@ -113,6 +114,7 @@ const UploadImages = forwardRef(({ triggerUpload, carInfo, mode }, ref) => {
   useImperativeHandle(ref, () => ({
     uploadFiles,
   }));
+
   const removeFile = async (index, isExistingImage) => {
     try {
       if (isExistingImage) {
@@ -125,17 +127,18 @@ const UploadImages = forwardRef(({ triggerUpload, carInfo, mode }, ref) => {
         }
 
         // Delete the image from the database
-        await db.delete(CarImages).where(eq(CarImages.imageUrl, imageToRemove));
+        const deleteResult = await db
+          .delete(CarImages)
+          .where(eq(CarImages.imageUrl, imageToRemove));
 
-        // Update the state to remove the image from the list
-        setEditUploadImage((prevImages) =>
-          prevImages.filter((_, i) => i !== index)
-        );
-      } else {
-        // For newly selected files, update the state to remove the file
-        setSelectedFiles((prevFiles) =>
-          prevFiles.filter((_, i) => i !== index)
-        );
+        if (deleteResult) {
+          console.log("Image deleted from database:", imageToRemove);
+        } else {
+          console.error("Failed to delete image from database.");
+        }
+
+        // Update the state to remove the image from the UI
+      
       }
     } catch (error) {
       console.error("Error removing file:", error);

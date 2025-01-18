@@ -21,9 +21,6 @@ import moment from "moment";
 import { eq } from "drizzle-orm";
 import Service from "@/Shared/Service";
 
-
-
-
 function AddListing() {
   const [formData, setFormData] = useState({});
   const [featuresData, setFeaturesData] = useState({});
@@ -39,11 +36,7 @@ function AddListing() {
   const mode = searchParams.get("mode");
   const listid = searchParams.get("id");
 
-  
   useEffect(() => {
-    console.log('====================================');
-    console.log(user);
-    console.log('====================================');
     if (mode === "edit" && isLoaded) {
       GetListDetails();
     }
@@ -91,6 +84,7 @@ function AddListing() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
     if (!validateForm()) return;
 
     setLoading(true);
@@ -122,7 +116,7 @@ function AddListing() {
           })
           .returning({ id: CarListing.id });
 
-        if (result.length > 0) {
+        if (result.length >= 0) {
           const carListingId = result[0].id;
           setTriggerUpload(carListingId);
           await imageUploaderRef.current.uploadFiles();

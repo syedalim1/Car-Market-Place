@@ -41,7 +41,7 @@ const MostSearchedCar = () => {
   };
 
   return (
-    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8  bg-[#eef0fc] ">
+    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8  bg-white ">
       {/* Section Title */}
       <h2 className="font-bold  text-xl sm:text-3xl text-center py-5 mb-8 text-gray-800">
         Most Searched Cars

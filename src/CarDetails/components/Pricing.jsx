@@ -3,7 +3,7 @@ import { MdLocalOffer } from "react-icons/md";
 
 function Pricing({ car }) {
   return (
-    <div className="p-8 rounded-xl border shadow-lg bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100">
+    <div className="p-8 rounded-xl bg-white  ">
       <h2 className="text-[25px]  sm:text-2xl font-semibold text-purple-700 mb-4">
         Our Price
       </h2>

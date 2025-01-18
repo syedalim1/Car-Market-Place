@@ -6,7 +6,7 @@ function Specification({ car }) {
   console.log(car);
 
   return (
-    <div className="p-2 sm:p-8 rounded-xl border shadow-lg sm:mt-7 mt-2 bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100">
+    <div className="p-2 sm:p-8  bg-white sm:mt-7 mt-2 ">
       <h2 className="font-semibold sm:text-3xl text-xl text-purple-700 mb-6">
         Specifications
       </h2>

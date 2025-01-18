@@ -59,7 +59,7 @@ function OwnerDetails({ car }) {
   };
 
   return (
-    <div className="p-2 sm:p-8 border h-[310px]   sm:mt-7 bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 sm:p-6 md:p-8 lg:p-10">
+    <div className="p-2 sm:p-8  h-[310px]   sm:mt-7  s md:p-8 lg:p-10">
       <div className="text-center">
         <h2 className="font-semibold text-xl sm:text-3xl text-purple-700 mb-4">
           Owner Details

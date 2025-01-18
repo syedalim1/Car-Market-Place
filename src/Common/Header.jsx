@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   SignedIn,
   SignedOut,
   SignInButton,
+  SignOutButton,
   UserButton,
 } from "@clerk/clerk-react";
 import { Button } from "../components/ui/button";
@@ -13,7 +14,7 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white shadow-md ">
+    <header className="bg-white shadow-md">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo Section */}
         <Link to={"/"} aria-label="Home">
@@ -27,18 +28,6 @@ const Header = () => {
             className="font-medium hover:scale-105 transition-transform hover:text-primary"
           >
             Home
-          </Link>
-          <Link
-            to={"/search"}
-            className="font-medium hover:scale-105 transition-transform hover:text-primary"
-          >
-            Search
-          </Link>
-          <Link
-            to={"/about"}
-            className="font-medium hover:scale-105 transition-transform hover:text-primary"
-          >
-            About Us
           </Link>
           <Link
             to={"/contact"}
@@ -73,6 +62,11 @@ const Header = () => {
                 Submit Listing
               </Button>
             </Link>
+            <SignOutButton>
+              <Button className="hover:scale-110 hover:text-black hover:bg-white transition-transform text-white bg-black">
+                Sign Out
+              </Button>
+            </SignOutButton>
           </SignedIn>
           <SignedOut>
             <SignInButton>
@@ -96,19 +90,13 @@ const Header = () => {
               Home
             </Link>
             <Link
-              to={"/search"}
+              to={"/searching"}
               className="font-medium hover:scale-105 transition-transform hover:text-primary"
               onClick={() => setMenuOpen(false)}
             >
-              Search
+              Searching
             </Link>
-            <Link
-              to={"/about"}
-              className="font-medium hover:scale-105 transition-transform hover:text-primary"
-              onClick={() => setMenuOpen(false)}
-            >
-              About Us
-            </Link>
+          
             <Link
               to={"/contact"}
               className="font-medium hover:scale-105 transition-transform hover:text-primary"
@@ -127,6 +115,11 @@ const Header = () => {
                   Submit Listing
                 </Button>
               </Link>
+              <SignOutButton>
+                <Button className="w-full hover:scale-105 hover:text-black hover:bg-white transition-transform text-white bg-black">
+                  Sign Out
+                </Button>
+              </SignOutButton>
             </SignedIn>
             <SignedOut>
               <SignInButton>

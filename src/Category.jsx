@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Category = () => {
   return (
-    <div className="md:mt-[200px]  bg-[#eef0fc] ">
+    <div className="md:mt-[200px]  bg-white ">
       <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">
         Browse By Type
       </h2>
@@ -13,7 +13,7 @@ const Category = () => {
         {Data.Category.map((category, index) => (
           <div
             key={index}
-            className="border rounded-xl p-4 flex flex-col items-center hover:shadow-xl transition-transform transform hover:scale-105 cursor-pointer"
+            className=" p-4 flex flex-col items-center hover:shadow-xl transition-transform transform hover:scale-105 cursor-pointer"
           >
             <Link to={"/search/" + category.name}>
               <img

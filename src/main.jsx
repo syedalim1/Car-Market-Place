@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 
 import Home from "./Home";
-import Contact from "./contact";
 import { ClerkProvider } from "@clerk/clerk-react";
 
 import AddListing from "./add-listing";
@@ -13,6 +12,7 @@ import { Toaster } from "@/components/ui/toaster";
 import SearchByTarget from "./SearchByTarget";
 import CarDetails from "./CarDetails/components/CarDetails";
 import Profile from "./profile";
+import ContactSeller from "./contact";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -26,7 +26,7 @@ createRoot(document.getElementById("root")).render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/contact" element={<ContactSeller />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/add-listing" element={<AddListing />} />
           <Route path="/searching" element={<SearchByTarget />} />

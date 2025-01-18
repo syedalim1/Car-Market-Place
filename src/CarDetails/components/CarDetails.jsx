@@ -47,9 +47,9 @@ const CarDetails = () => {
   }
 
   return (
-    <div className="bg-gray-50">
+    <div className="bg-white">
       <Header />
-      <div className="sm:p-10 md:px-20 bg-white rounded-xl shadow-lg sm:mt-5">
+      <div className="sm:p-10 md:px-20 bg-white  sm:mt-5">
         <DetailHeaders car={car} />
 
         <ImageGallery car={car} />
@@ -63,7 +63,7 @@ const CarDetails = () => {
           </div>
 
           {/* Right section (Pricing, Specification, Owner Details) */}
-          <div className="bg-gray-100 sm:p-6 rounded-xl shadow-md">
+          <div className="bg-white sm:p-6 ">
             <Pricing car={car} />
             <Specification car={car} />
           </div>

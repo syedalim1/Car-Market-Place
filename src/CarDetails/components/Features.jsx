@@ -8,9 +8,9 @@ function Features({ features }) {
       featuresSection.scrollIntoView({ behavior: "smooth" });
     }
   };
-
+  // bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100
   return (
-    <div className="p-5 sm:my-20 sm:mt-2 border  py-7 bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100">
+    <div className="p-5 sm:my-20 sm:mt-2   py-7">
       {/* Scroll Down Button */}
 
       {/* Features Section */}
@@ -22,8 +22,11 @@ function Features({ features }) {
         className="flex flex-col gap-2 h-[380px] overflow-y-auto scroll-smooth"
       >
         {Object.entries(features).map(([featureKey, value]) => (
-          <div key={featureKey} className=" flex gap-2 items-center cursor-pointer">
-            <IoMdCheckmarkCircleOutline className="text-xl"/>
+          <div
+            key={featureKey}
+            className=" flex gap-2 items-center cursor-pointer"
+          >
+            <IoMdCheckmarkCircleOutline className="text-xl" />
             <span className="text-gray-700 text-sm font-bold sm:text-xl">
               {featureKey}
             </span>

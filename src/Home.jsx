@@ -1,9 +1,7 @@
 import React from "react";
 import {
   SignedIn,
-  SignedOut,
-  SignInButton,
-  UserButton,
+
 } from "@clerk/clerk-react";
 import Header from "./Common/Header";
 import Hero from "./Hero";
