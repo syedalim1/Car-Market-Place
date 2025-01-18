@@ -41,9 +41,9 @@ const MostSearchedCar = () => {
   };
 
   return (
-    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8  bg-[#eef0fc] ">
       {/* Section Title */}
-      <h2 className="font-bold  text-xl sm:text-3xl text-center mt-12 mb-8 text-gray-800">
+      <h2 className="font-bold  text-xl sm:text-3xl text-center py-5 mb-8 text-gray-800">
         Most Searched Cars
       </h2>
 
@@ -68,7 +68,7 @@ const MostSearchedCar = () => {
             {/* Mapping through the car list and displaying CarItem for each */}
             {carList.map((car, index) => (
               <CarouselItem
-                className="flex-none basis-full sm:basis-1/2 md:basis-1/3 p-2 transition-transform transform hover:scale-105"
+                className="flex-none basis-1/2 sm:basis-1/2 md:basis-1/3 p-2 transition-transform transform hover:scale-105"
                 key={index}
               >
                 <CarItem car={car} />{" "}

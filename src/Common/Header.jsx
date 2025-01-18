@@ -13,11 +13,11 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 shadow-md">
+    <header className="bg-white shadow-md ">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo Section */}
         <Link to={"/"} aria-label="Home">
-          <img src="/logo.svg" width={150} height={100} alt="Logo" />
+          <img src="/logo.png" width={150} height={100} alt="Logo" />
         </Link>
 
         {/* Navigation for larger screens */}

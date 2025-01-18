@@ -8,7 +8,7 @@ const DetailHeaders = ({ car }) => {
   return (
     <div>
       {car.CarListing.listing_title ? (
-        <div className="p-2 sm:p-6 bg-gradient-to-r from-indigo-300 to-pink-300 rounded-xl shadow-md">
+        <div className="p-2 sm:p-6 bg-gradient-to-r from-indigo-300 to-pink-300 rounded-xl shadow-md ">
           <h2 className="font-bold text-xl sm:text-3xl">
             {car.CarListing.listing_title}
           </h2>

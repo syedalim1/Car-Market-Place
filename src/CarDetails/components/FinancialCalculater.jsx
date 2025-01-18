@@ -28,8 +28,8 @@ const FinancialCalculater = () => {
   };
 
   return (
-    <div className="p-8 rounded-xl border shadow-lg bg-gradient-to-br from-teal-100 via-purple-100 to-yellow-100">
-      <h2 className="font-bold text-2xl sm:text-3xl text-purple-700 mb-6">
+    <div className="sm:p-8 p-2 w-full  border shadow-lg bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100">
+      <h2 className="font-bold text-[15px] sm:text-3xl text-purple-700 mb-6">
         Financial Calculator
       </h2>
 
@@ -37,7 +37,7 @@ const FinancialCalculater = () => {
         <div className="flex flex-col w-full">
           <label
             htmlFor="price"
-            className="font-medium text-sm sm:text-lg text-gray-700 mb-2"
+            className="font-medium text-[10px] sm:text-lg text-gray-700 mb-2"
           >
             Price ($)
           </label>
@@ -46,13 +46,13 @@ const FinancialCalculater = () => {
             placeholder="Enter the car price"
             value={carPrice}
             onChange={(e) => setCarPrice(e.target.value)}
-            className="rounded-full border-gray-300 focus:ring-2 focus:ring-purple-400 focus:border-purple-500"
+            className="rounded-full text-[10px] border-gray-300 focus:ring-2 focus:ring-purple-400 focus:border-purple-500"
           />
         </div>
         <div className="flex flex-col w-full">
           <label
             htmlFor="interest"
-            className="font-medium text-sm sm:text-lg text-gray-700 mb-2"
+            className="font-medium text-[10px] sm:text-lg text-gray-700 mb-2"
           >
             Interest Rate (%)
           </label>
@@ -61,7 +61,7 @@ const FinancialCalculater = () => {
             placeholder="Enter the interest rate"
             value={interestRate}
             onChange={(e) => setInterestRate(e.target.value)}
-            className="rounded-full border-gray-300 focus:ring-2 focus:ring-teal-400 focus:border-teal-500"
+            className="rounded-full text-[10px] border-gray-300 focus:ring-2 focus:ring-teal-400 focus:border-teal-500"
           />
         </div>
       </div>
@@ -70,7 +70,7 @@ const FinancialCalculater = () => {
         <div className="flex flex-col w-full">
           <label
             htmlFor="months"
-            className="font-medium text-sm sm:text-lg text-gray-700 mb-2"
+            className="font-medium text-[10px] sm:text-lg text-gray-700 mb-2"
           >
             Loan Terms (Years)
           </label>
@@ -79,13 +79,13 @@ const FinancialCalculater = () => {
             placeholder="Enter loan term in years"
             value={loanTerm}
             onChange={(e) => setLoanTerm(e.target.value)}
-            className="rounded-full border-gray-300 focus:ring-2 focus:ring-purple-400 focus:border-purple-500 "
+            className="rounded-full text-[10px] border-gray-300 focus:ring-2 focus:ring-purple-400 focus:border-purple-500 "
           />
         </div>
         <div className="flex flex-col w-full">
           <label
             htmlFor="downPayment"
-            className="font-medium text-sm sm:text-lg text-gray-700 mb-2"
+            className="font-medium text-[10px] sm:text-lg text-gray-700 mb-2"
           >
             Down Payment ($)
           </label>
@@ -94,16 +94,16 @@ const FinancialCalculater = () => {
             placeholder="Enter the down payment"
             value={downPayment}
             onChange={(e) => setDownPayment(e.target.value)}
-            className="rounded-full border-gray-300 focus:ring-2 focus:ring-teal-400 focus:border-teal-500"
+            className="rounded-full text-[10px] border-gray-300 focus:ring-2 focus:ring-teal-400 focus:border-teal-500"
           />
         </div>
       </div>
 
       <Button
-        className="mt-8  w-full  bg-gradient-to-r  from-purple-500 to-blue-500 text-white rounded-lg py-3 text-lg hover:from-blue-500 hover:to-purple-500 transition-all duration-300"
+        className="mt-8  w-full rounded-full bg-gradient-to-r  from-purple-500 to-blue-500 text-white  p-3 text-lg hover:from-blue-500 hover:to-purple-500 transition-all duration-300"
         onClick={calculateMonthlyPayments}
       >
-        <p className="text-sm sm:text-lg"> Calculate Monthly Payment</p>
+        <p className="text-[12px] sm:text-lg "> Calculate Monthly Payment</p>
       </Button>
 
       {monthlyPayment && (

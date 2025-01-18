@@ -19,12 +19,11 @@ function Features({ features }) {
   };
 
   return (
-    <div className="p-5 border shadow-md rounded-xl my-7 bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100">
+    <div className="p-5 sm:my-20 mt-2 border  py-7 bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100">
       {/* Scroll Down Button */}
-      
 
       {/* Features Section */}
-      <h2 className="font-medium text-2xl text-gray-800 mb-5 sticky fixed">
+      <h2 className="font-medium sm:text-2xl text-xl text-gray-800 mb-5 sticky fixed">
         Features
       </h2>
       <div
@@ -42,7 +41,7 @@ function Features({ features }) {
             ) : (
               <FaRegCheckSquare className="text-gray-400 text-[15px] sm:text-xl" />
             )}
-            <span className="text-gray-700 text-[15px] font-bold sm:text-xl">
+            <span className="text-gray-700 text-sm font-bold sm:text-xl">
               {featureKey}
             </span>
           </div>

@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 
 const Category = () => {
   return (
-    <div className="md:mt-[200px] ">
+    <div className="md:mt-[200px]  bg-[#eef0fc] ">
       <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">
         Browse By Type
       </h2>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 px-6 sm:px-12 lg:px-20">
+      <div className="grid grid-cols-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 px-6 sm:px-12 lg:px-20">
         {Data.Category.map((category, index) => (
           <div
             key={index}

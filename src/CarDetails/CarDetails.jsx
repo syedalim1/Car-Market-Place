@@ -51,47 +51,29 @@ const CarDetails = () => {
   return (
     <div className="bg-gray-50">
       <Header />
-      <div className="p-10 md:px-20 bg-white rounded-xl shadow-lg mt-5">
+      <div className="sm:p-10 md:px-20 bg-white rounded-xl shadow-lg mt-5">
         <DetailHeaders car={car} />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-10">
+        <div className="grid grid-cols-2 md:grid-cols-3  mt-10">
           {/* Left section (Image Gallery, Description, Features, Financial Calculations) */}
-          <div className="md:col-span-2 space-y-6">
+          <div className="md:col-span-2 ">
             <ImageGallery car={car} />
             <CarDescription car={car} />
             <Features features={car.CarListing.features} />
-            <FinancialCalculater car={car} />
           </div>
 
           {/* Right section (Pricing, Specification, Owner Details) */}
-          <div className="bg-gray-100 p-6 rounded-xl shadow-md">
+          <div className="bg-gray-100 sm:p-6 rounded-xl shadow-md">
             <Pricing car={car} />
             <Specification car={car} />
             <OwnerDetails car={car} />
           </div>
         </div>
-
-        {/* Add a contact section with call and chat icons */}
-        <div className="mt-10 flex justify-center space-x-8">
-          <Button
-            className="flex items-center gap-2 bg-blue-500 text-white rounded-full px-6 py-3 hover:bg-blue-600 transition-all"
-            onClick={() => alert("Contact the seller via phone")}
-          >
-            <FaPhoneAlt />
-            Call Seller
-          </Button>
-          <Button
-            className="flex items-center gap-2 bg-green-500 text-white rounded-full px-6 py-3 hover:bg-green-600 transition-all"
-            onClick={() => alert("Contact the seller via chat")}
-          >
-            <FaCommentAlt />
-            Chat with Seller
-          </Button>
-        </div>
+        <FinancialCalculater car={car} />
 
         <MostSearchedCar />
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
