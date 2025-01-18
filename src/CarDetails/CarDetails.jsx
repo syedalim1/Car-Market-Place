@@ -51,22 +51,23 @@ const CarDetails = () => {
   return (
     <div className="bg-gray-50">
       <Header />
-      <div className="sm:p-10 md:px-20 bg-white rounded-xl shadow-lg mt-5">
+      <div className="sm:p-10 md:px-20 bg-white rounded-xl shadow-lg sm:mt-5">
         <DetailHeaders car={car} />
 
-        <div className="grid grid-cols-2 md:grid-cols-3  mt-10">
+        <ImageGallery car={car} />
+        <CarDescription car={car} />
+
+        <div className="grid grid-cols-2 md:grid-cols-3  sm:mt-10">
           {/* Left section (Image Gallery, Description, Features, Financial Calculations) */}
           <div className="md:col-span-2 ">
-            <ImageGallery car={car} />
-            <CarDescription car={car} />
             <Features features={car.CarListing.features} />
+            <OwnerDetails car={car} />
           </div>
 
           {/* Right section (Pricing, Specification, Owner Details) */}
           <div className="bg-gray-100 sm:p-6 rounded-xl shadow-md">
             <Pricing car={car} />
             <Specification car={car} />
-            <OwnerDetails car={car} />
           </div>
         </div>
         <FinancialCalculater car={car} />

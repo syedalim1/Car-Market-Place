@@ -4,11 +4,11 @@ function CarDescription({ car }) {
   return (
     <div className="">
       {car.CarListing.listing_description ? (
-        <div className="sm:p-8 p-2 rounded-xl bg-white shadow-xl h-[470px] sm:h-[500px]">
+        <div className="sm:p-8 p-2 rounded-xl bg-white shadow-xl h-[200px] sm:h-[500px]">
           <h2 className="my-4 font-semibold sm:text-2xl text-xl border-b pb-3">
             Description
           </h2>
-          <div className="max-h-[350px] overflow-auto ">
+          <div className="max-h-[170px] overflow-auto ">
             <p className="text-[12px]">{car.CarListing.listing_description}</p>
           </div>
         </div>

@@ -8,7 +8,7 @@ import {
 
 const Footer = () => {
   return (
-    <div className="bg-gradient-to-r from-blue-500 to-purple-500 text-white py-10">
+    <div className="mt-10 bg-gradient-to-r from-blue-500 to-purple-500 text-white py-10">
       <div className="container mx-auto px-4 text-center">
         {/* Footer Top Section */}
         <div className="mb-8">
