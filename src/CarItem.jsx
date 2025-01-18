@@ -20,7 +20,7 @@ const CarItem = ({ car }) => {
   return (
     <div
       onClick={handleLinkClick}
-      className="relative border rounded-lg shadow-lg p-6 bg-white cursor-pointer hover:shadow-2xl transition-transform transform hover:scale-105"
+      className="relative border h-[500px] rounded-2xl shadow-lg p-6 bg-white cursor-pointer hover:shadow-2xl transition-transform transform hover:scale-105"
       role="button"
       aria-label={`View details for ${car?.listing_title || "Car"}`}
     >
@@ -35,12 +35,12 @@ const CarItem = ({ car }) => {
       <img
         src={car?.images?.[0] || "/path/to/default-image.jpg"}
         alt={car?.listing_title || "Car"}
-        className="rounded-t-xl h-[100px] sm:w-full  sm:h-48 object-cover mb-4"
+        className="rounded-t-xl h-[200px] w-full  sm:w-full  sm:h-48 object-contain mb-4"
       />
 
       {/* Car Title */}
       <div>
-        <h2 className="font-bold text-black text-lg mb-2">
+        <h2 className="font-bold text-black text-sm sm:text-lg mb-2">
           {car?.listing_title || "Unknown Car"}
         </h2>
       </div>
@@ -51,15 +51,21 @@ const CarItem = ({ car }) => {
       <div className="flex  items-center justify-between mt-5 text-center">
         <div className="flex flex-col items-center">
           <LuFuel className="text-lg mb-2" />
-          <h2 className="truncate text-[10px] sm:text-lg">{car?.mileage || "N/A"} Miles</h2>
+          <h2 className="truncate text-[10px] sm:text-lg">
+            {car?.mileage || "N/A"} Miles
+          </h2>
         </div>
         <div className="flex flex-col items-center">
           <TbBrandSpeedtest className="text-lg mb-2" />
-          <h2 className="truncate text-[10px] sm:text-lg">{car?.fuel_type || "N/A"}</h2>
+          <h2 className="truncate text-[10px] sm:text-lg">
+            {car?.fuel_type || "N/A"}
+          </h2>
         </div>
         <div className="flex flex-col items-center">
           <GiGearStickPattern className="text-lg mb-2" />
-          <h2 className="truncate text-[10px] sm:text-lg">{car?.transmission || "N/A"}</h2>
+          <h2 className="truncate text-[10px] sm:text-lg">
+            {car?.transmission || "N/A"}
+          </h2>
         </div>
       </div>
 

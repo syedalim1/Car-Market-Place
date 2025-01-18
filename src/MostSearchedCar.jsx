@@ -64,11 +64,11 @@ const MostSearchedCar = () => {
       {/* Display Carousel if Data is Available */}
       {!loading && !error && carList.length > 0 && (
         <Carousel>
-          <CarouselContent className="flex flex-nowrap overflow-x-auto gap-4">
+          <CarouselContent className="flex flex-nowrap  g">
             {/* Mapping through the car list and displaying CarItem for each */}
             {carList.map((car, index) => (
               <CarouselItem
-                className="flex-none basis-1/2 sm:basis-1/2 md:basis-1/3 p-2 transition-transform transform hover:scale-105"
+                className="flex-none  basis-1/2 sm:basis-1/2 md:basis-1/3 p-2 transition-transform transform hover:scale-105"
                 key={index}
               >
                 <CarItem car={car} />{" "}

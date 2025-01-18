@@ -19,7 +19,7 @@ function Features({ features }) {
       </h2>
       <div
         id="features-section"
-        className="flex flex-col gap-2 h-[340px] overflow-y-auto scroll-smooth"
+        className="flex flex-col gap-2 h-[380px] overflow-y-auto scroll-smooth"
       >
         {Object.entries(features).map(([featureKey, value]) => (
           <div key={featureKey} className=" flex gap-2 items-center cursor-pointer">

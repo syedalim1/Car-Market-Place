@@ -21,6 +21,9 @@ import moment from "moment";
 import { eq } from "drizzle-orm";
 import Service from "@/Shared/Service";
 
+
+
+
 function AddListing() {
   const [formData, setFormData] = useState({});
   const [featuresData, setFeaturesData] = useState({});
@@ -36,12 +39,15 @@ function AddListing() {
   const mode = searchParams.get("mode");
   const listid = searchParams.get("id");
 
+  
   useEffect(() => {
+    console.log('====================================');
+    console.log(user);
+    console.log('====================================');
     if (mode === "edit" && isLoaded) {
       GetListDetails();
     }
   }, [mode, listid, isLoaded]);
-
 
   const GetListDetails = async () => {
     try {
@@ -109,9 +115,10 @@ function AddListing() {
           .values({
             ...formData,
             features: JSON.stringify(featuresData),
-            username:user?.username,
+            username: user?.username,
             createdBy: user?.primaryEmailAddress?.emailAddress || "Unknown",
             postedOn: moment().format("DD/MM/yyyy"),
+            fullName: user?.fullName,
           })
           .returning({ id: CarListing.id });
 
