@@ -18,47 +18,48 @@ const Search = () => {
 
   return (
     <div
-      className="flex  gap-2 flex-row md:p-4 md:p-6  rounded-md 
+      className="flex  gap-2 flex-col sm:flex-row md:p-6  rounded-md 
       md:rounded-full  md:flex-row md:gap-10 md:px-5 items-center md:w-[100%] transition-all  hover:scale-105"
     >
-      {/* Car Type Selection */}
-      <Select onValueChange={(value) => setCar(value)} className="">
-        <SelectTrigger className="outline-none rounded-full md:border-none md:w-full shadow-md  transition-all focus:ring-2 focus:ring-indigo-400 p-2 text-lg">
-          <SelectValue placeholder="Cars" />
-        </SelectTrigger>
-        <SelectContent className="bg-white rounded-md shadow-lg">
-          <SelectItem value="New">New</SelectItem>
-          <SelectItem value="Used">Used</SelectItem>
-          <SelectItem value="Certified Pre-Owned">
-            Certified Pre-Owned
-          </SelectItem>
-        </SelectContent>
-      </Select>
-
-      <Separator
-        orientation="vertical"
-        className="hidden md:block bg-gradient-to-r from-red-600 to-yellow-400 mx-4"
-      />
-
-      {/* Car Make Selection */}
-      <Select onValueChange={(value) => setMake(value)}>
-        <SelectTrigger className="outline-none rounded-full md:border-none w-full shadow-md  transition-all focus:ring-2 focus:ring-indigo-400 p-2 text-lg">
-          <SelectValue placeholder="Car Makes"  />
-        </SelectTrigger>
-        <SelectContent className="bg-white rounded-md shadow-lg">
-          {Data.CarMakes.map((maker, index) => (
-            <SelectItem key={index} value={maker.name}>
-              {maker.name}
+      <div className="flex justify-between gap-5 w-full">
+        {/* Car Type Selection */}
+        <Select onValueChange={(value) => setCar(value)} className="w-full ">
+          <SelectTrigger className="outline-none  rounded-full w-full md:border-none md:w-full shadow-md  transition-all focus:ring-2 focus:ring-indigo-400 p-2 text-lg">
+            <SelectValue placeholder="Cars" />
+          </SelectTrigger>
+          <SelectContent className="bg-white rounded-md  shadow-lg">
+            <SelectItem value="New">New</SelectItem>
+            <SelectItem value="Used">Used</SelectItem>
+            <SelectItem value="Certified Pre-Owned">
+              Certified Pre-Owned
             </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+          </SelectContent>
+        </Select>
 
-      <Separator
-        orientation="vertical"
-        className="hidden md:block bg-gradient-to-r from-red-600 to-yellow-400 mx-4"
-      />
+        <Separator
+          orientation="vertical"
+          className="hidden md:block bg-gradient-to-r from-red-600 to-yellow-400 mx-4"
+        />
 
+        {/* Car Make Selection */}
+        <Select onValueChange={(value) => setMake(value)}>
+          <SelectTrigger className="outline-none rounded-full md:border-none w-full shadow-md  transition-all focus:ring-2 focus:ring-indigo-400 p-2 text-lg">
+            <SelectValue placeholder="Car Makes" />
+          </SelectTrigger>
+          <SelectContent className="bg-white rounded-md shadow-lg">
+            {Data.CarMakes.map((maker, index) => (
+              <SelectItem key={index} value={maker.name}>
+                {maker.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        <Separator
+          orientation="vertical"
+          className="hidden md:block bg-gradient-to-r from-red-600 to-yellow-400 mx-4"
+        />
+      </div>
       {/* Price Selection */}
       <Select onValueChange={(value) => setPrice(value)}>
         <SelectTrigger className="outline-none rounded-full md:border-none w-full shadow-md  transition-all focus:ring-2 focus:ring-indigo-400 p-2 text-lg">

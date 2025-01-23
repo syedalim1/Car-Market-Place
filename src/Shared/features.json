@@ -2,12 +2,12 @@
   "features": [
     {
       "label": "Air Conditioner",
-      "name": "airConditioner",
+      "name": "Air Conditioner",
       "fieldType": "checkbox"
     },
     {
       "label": "Digital Odometer",
-      "name": "digitalOdometer",
+      "name": "Digital Odometer",
       "fieldType": "checkbox"
     },
     {
@@ -27,12 +27,12 @@
       "fieldType": "checkbox"
     },
     {
-      "label": "Touchscreen Display",
-      "name": "touchscreenDisplay",
+      "label": "Touch Display",
+      "name": "touchDisplay",
       "fieldType": "checkbox"
     },
     {
-      "label": "Anti-lock Braking",
+      "label": "Anti Braking",
       "name": "antiLockBraking",
       "fieldType": "checkbox"
     },
@@ -42,17 +42,17 @@
       "fieldType": "checkbox"
     },
     {
-      "label": "Child Safety Locks",
+      "label": "Child Locks",
       "name": "childSafetyLocks",
       "fieldType": "checkbox"
     },
     {
-      "label": "Driver Air Bag",
+      "label": "Air Bag",
       "name": "driverAirBag",
       "fieldType": "checkbox"
     },
     {
-      "label": "Power Door Locks",
+      "label": "PowerDoor Locks",
       "name": "powerDoorLocks",
       "fieldType": "checkbox"
     },
@@ -67,7 +67,7 @@
       "fieldType": "checkbox"
     },
     {
-      "label": "Fog Lights Front",
+      "label": "Fog Lights ",
       "name": "fogLightsFront",
       "fieldType": "checkbox"
     },

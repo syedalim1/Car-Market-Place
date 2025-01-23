@@ -9,17 +9,17 @@ const Category = () => {
         Browse By Type
       </h2>
 
-      <div className="grid grid-cols-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 px-6 sm:px-12 lg:px-20">
+      <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 px-6 sm:px-12 lg:px-20">
         {Data.Category.map((category, index) => (
           <div
             key={index}
-            className=" p-4 flex flex-col items-center hover:shadow-xl transition-transform transform hover:scale-105 cursor-pointer"
+            className="  flex flex-col items-center hover:shadow-xl transition-transform transform hover:scale-105 cursor-pointer"
           >
             <Link to={"/search/" + category.name}>
               <img
                 src={category.icon}
                 alt={category.name}
-                className="w-14 h-14 object-contain" // Adjusting the image size
+                className=" h-14 object-contain" // Adjusting the image size
               />
               <h2 className="mt-3 text-lg text-center text-gray-700 font-semibold">
                 {category.name}

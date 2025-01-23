@@ -83,25 +83,26 @@ const CarMakes=[
     
     
 ]
+const Pricing = [
+  {
+    id: 1,
+    amount: "₹10,000 - ₹50,000",
+  },
+  {
+    id: 2,
+    amount: "₹50,000 - ₹100,000",
+  },
+  {
+    id: 3,
+    amount: "₹100,000 - ₹500,000",
+  },
+  {
+    id: 4,
+    amount: "₹500,000 and above",
+  },
+];
 
-const Pricing=[
-    {
-        id:1,
-        amount:1000
-    },
-    {
-        id:2,
-        amount:2000
-    },
-    {
-        id:3,
-        amount:5000
-    },
-    {
-        id:4,
-        amount:10000
-    }
-]
+
 
 const Category=[
     {
@@ -133,18 +134,7 @@ const Category=[
         id:6,
         name:'Hybrid',
         icon:'https://cdn-icons-png.flaticon.com/128/3202/3202003.png'
-    },
-    {
-        id:7,
-        name:'Coupe',
-        icon:'https://cdn-icons-png.flaticon.com/128/4391/4391630.png'
-    },
-    {
-        id:8,
-        name:'Van',
-        icon:'https://cdn-icons-png.flaticon.com/128/1433/1433678.png'
-    },
-   
+    }
  
     
 ]

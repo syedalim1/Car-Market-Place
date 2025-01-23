@@ -53,21 +53,22 @@ const CarDetails = () => {
         <DetailHeaders car={car} />
 
         <ImageGallery car={car} />
+        <Pricing car={car} />
         <CarDescription car={car} />
 
         <div className="grid grid-cols-2 md:grid-cols-3  sm:mt-10">
           {/* Left section (Image Gallery, Description, Features, Financial Calculations) */}
           <div className="md:col-span-2 ">
-            <Features features={car.CarListing.features} />
-            <OwnerDetails car={car} />
+            <Specification car={car} />
           </div>
 
           {/* Right section (Pricing, Specification, Owner Details) */}
           <div className="bg-white sm:p-6 ">
-            <Pricing car={car} />
-            <Specification car={car} />
+            {" "}
+            <Features features={car.CarListing.features} />
           </div>
         </div>
+        <OwnerDetails car={car} />
         <FinancialCalculater car={car} />
         <MostSearchedCar />
       </div>

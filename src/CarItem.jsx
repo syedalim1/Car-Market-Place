@@ -20,7 +20,7 @@ const CarItem = ({ car }) => {
   return (
     <div
       onClick={handleLinkClick}
-      className="relative border h-[500px] rounded-2xl shadow-lg p-6 bg-white cursor-pointer hover:shadow-2xl transition-transform transform hover:scale-105"
+      className="relative border h-[350px] rounded-2xl shadow-lg p-2 bg-white cursor-pointer hover:shadow-2xl transition-transform transform hover:scale-105"
       role="button"
       aria-label={`View details for ${car?.listing_title || "Car"}`}
     >
@@ -35,7 +35,7 @@ const CarItem = ({ car }) => {
       <img
         src={car?.images?.[0] || "/path/to/default-image.jpg"}
         alt={car?.listing_title || "Car"}
-        className="rounded-t-xl h-[200px] w-full  sm:w-full  sm:h-48 object-contain mb-4"
+        className="rounded-t-xl h-[100px] w-full  sm:w-full  sm:h-48 object-contain mb-4"
       />
 
       {/* Car Title */}
@@ -74,7 +74,7 @@ const CarItem = ({ car }) => {
       {/* Price and View Details */}
       <div className="sm:flex items-center justify-between">
         <h2 className="font-bold sm:text-xl text-sm">
-          ${car?.selling_price || "Not Available"}
+          ₹ {car?.selling_price || "Not Available"}
         </h2>
 
         <button className="mt-3 bg-black text-white px-3 py-1 w-full rounded-lg hover:bg-gray-800 transition-all">

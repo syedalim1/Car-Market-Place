@@ -5,8 +5,8 @@ import { CarImages, CarListing } from "../../../configs/schema";
 import { eq } from "drizzle-orm";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import CarItem from "@/CarItem";
 import Service from "@/Shared/Service";
+import CarItemSearch from "./CarItemSearch";
 
 const SeachBycategory = () => {
   const { category } = useParams();
@@ -43,7 +43,7 @@ const SeachBycategory = () => {
           {Car.length > 0
             ? Car.map((item, index) => (
                 <div key={index}>
-                  <CarItem car={item} />
+                  <CarItemSearch car={item} />
                 </div>
               ))
             : [1, 2, 3, 4, 5, 6].map((_, index) => (
