@@ -19,7 +19,7 @@ function Home() {
       <Hero />
       <Category />
       <MostSearchedCar />
-      <InfoSection />
+      {/* <InfoSection /> */}
       <Footer />
       <SignedIn />
     </div>
